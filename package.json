@@ -1,0 +1,23 @@
+{
+  "name": "search",
+  "version": "1.0.0",
+  "description": "Search in Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlramirez1210/search_nodejs.git"
+  },
+  "author": "Jorge Ramirez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jlramirez1210/search_nodejs/issues"
+  },
+  "homepage": "https://github.com/jlramirez1210/search_nodejs#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 1,
+    "Name": "New York"
+  },
+  {
+    "Id": 2,
+    "Name": "Orlando"
+  },
+  {
+    "Id": 3,
+    "Name": "Los Angeles"
+  },
+  {
+    "Id": 4,
+    "Name": "Houston"
+  },
+  {
+    "Id": 5,
+    "Name": "Washington"
+  },
+  {
+    "Id": 6,
+    "Name": "Miami"
+  }
+]

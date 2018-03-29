@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 1,
+    "Name": "Casa"
+  },
+  {
+    "Id": 2,
+    "Name": "Casa de Campo"
+  },
+  {
+    "Id": 3,
+    "Name": "Apartamento"
+  }
+]

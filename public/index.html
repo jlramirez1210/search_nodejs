@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
   <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+  <!--<link rel="stylesheet" href="materialize.min.css">
+  <script src="jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+  <script src="materialize.min.js"></script>-->
   <link rel="stylesheet" href="ion.rangeSlider.css">
   <link rel="stylesheet" href="ion.rangeSlider.skinFlat.css">
   <script src="ion.rangeSlider.min.js"></script>
@@ -37,13 +41,13 @@
             <div class="row invisible" id="personalizada">
                 <div class="row">
                   Ciudad:
-                  <select id="ciudad">
+                  <select id="ciudad" class="">
                     <option value="" selected>Escoge una ciudad</option>
                   </select>
                 </div>
                 <div class="row">
                   Tipo:
-                  <select id="tipo">
+                  <select id="tipo" class="">
                     <option value="" selected>Escoge un tipo</option>
                   </select>
                 </div>
@@ -57,7 +61,7 @@
           </div>
         </div>
       </div>
-      <div class="col m8 lista">
+      <div class="col m8 lista" id="lista">
         <!-- Property
         <div class="card horizontal">
           <div class="card-image">

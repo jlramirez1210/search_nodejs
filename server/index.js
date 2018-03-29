@@ -1,15 +1,22 @@
-var bodyParser  = require('body-parser'),
-    http        = require('http'),
-    express     = require('express')
+//Importo librerias requeridas
+var bodyParser  = require('body-parser');
+var http        = require('http');
+var express     = require('express');
+var events      = require('./router');
 
-var port        = port = process.env.PORT || 3000,
-    app         = express(),
-    Server      = http.createServer(app)
+//declaro variables
+var port = 3000;
+var app = express();
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static('public'))
+//creo el servidor
+var server = http.createServer(app);
 
-Server.listen(port, ()=>{
+//usa las librerias necsesarias
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+app.use('/events', events);
+server.listen(port, ()=>{
   console.log("Server is running on port " + port);
-})
+});

@@ -26,23 +26,25 @@ setSearch();
 class EventManager{
   constructor() {
     this.urlBase = "/events"
+    this.response = ""
     this.getAllData()
     this.getAllDataCiudad()
     this.getAllDataTipo()
+    this.lookAll()
+  }
+
+  lookAll() {
+    let self = this;
+    $('#buscar').on('click', () => {
+      self.renderData(self.response)
+    })
   }
 
   getAllData() {
-    $('#buscar').on('click', () => {
-      let self = this;
-      let url;
-      if($('#personalizada').attr('class')=='row invisible'){
-        url = self.urlBase + '/all'
-      }else{
-        url = self.urlBase + '/by'
-      }
-      $.get(url, (response) => {
-        self.renderData(response)
-      })
+    let self = this;
+    let url = self.urlBase + '/all'
+    $.get(url, (response) => {
+      this.response = response
     })
   }
 
@@ -60,8 +62,31 @@ class EventManager{
     })
   }
 
+  filterData(data){
+    if($('#ciudad').val()=='' && $('#tipo').val()==''){
+      return parseFloat(data.Precio.substring(1).replace(",",'')) >= parseFloat($('.irs-from').text().substring(1).replace(" ","")) &&
+            parseFloat(data.Precio.substring(1).replace(",",'')) <= parseFloat($('.irs-to').text().substring(1).replace(" ",""))
+    }else if($('#ciudad').val()!='' && $('#tipo').val()!=''){
+      return data.Ciudad === $('#ciudad option:selected').text() &&
+            data.Tipo === $('#tipo option:selected').text() &&
+            parseFloat(data.Precio.substring(1).replace(",",'')) >= parseFloat($('.irs-from').text().substring(1).replace(" ","")) &&
+            parseFloat(data.Precio.substring(1).replace(",",'')) <= parseFloat($('.irs-to').text().substring(1).replace(" ",""))
+    }else if($('#ciudad').val()!='' && $('#tipo').val()==''){
+      return data.Ciudad === $('#ciudad option:selected').text() &&
+            parseFloat(data.Precio.substring(1).replace(",",'')) >= parseFloat($('.irs-from').text().substring(1).replace(" ","")) &&
+            parseFloat(data.Precio.substring(1).replace(",",'')) <= parseFloat($('.irs-to').text().substring(1).replace(" ",""))
+    }else if($('#ciudad').val()=='' && $('#tipo').val()!=''){
+      return data.Tipo === $('#tipo option:selected').text() &&
+            parseFloat(data.Precio.substring(1).replace(",",'')) >= parseFloat($('.irs-from').text().substring(1).replace(" ","")) &&
+            parseFloat(data.Precio.substring(1).replace(",",'')) <= parseFloat($('.irs-to').text().substring(1).replace(" ",""))
+    }
+  }
+
   renderData(response){
-    var obj = JSON.parse(response)
+    let obj = JSON.parse(response)
+    if($('#personalizada').attr('class')!='row invisible'){
+      obj = obj.filter(this.filterData)
+    }
     let template = '<div class="card horizontal">' +
                       '<div class="card-image">' +
                         '<img src="img/home.jpg">' +
@@ -90,7 +115,7 @@ class EventManager{
   }
 
   renderDataCiudad(response){
-    var obj = JSON.parse(response)
+    let obj = JSON.parse(response)
     obj.map((data)=>{
       $('#ciudad').append('<option value="'+data.Id+'">'+data.Name+'</option>')
     })
@@ -98,7 +123,7 @@ class EventManager{
   }
 
   renderDataTipo(response){
-    var obj = JSON.parse(response)
+    let obj = JSON.parse(response)
     obj.map((data)=>{
       $('#tipo').append('<option value="'+data.Id+'">'+data.Name+'</option>')
     })
